@@ -9,9 +9,10 @@
     }
 @endphp
 <!-- Cart button with cart count -->
-<a href="javascript:void(0)" class="d-flex align-items-center text-dark px-3 h-100" data-toggle="dropdown" data-display="static" title="{{translate('Cart')}}">
-    <span class="mr-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20.562" viewBox="0 0 24 20.562">
+<a href="javascript:void(0)" class="d-flex align-items-center text-dark h-100 flex-column justify-content-center" data-toggle="dropdown" data-display="static" title="{{translate('Cart')}}">
+    
+    <span class="nav-box-text d-none d-xl-block text-white fs-12">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20.562" viewBox="0 0 24 20.562" style="width:13px">
             <g id="_5e67fc94b53aaec8ca181b806dd815ee" data-name="5e67fc94b53aaec8ca181b806dd815ee" transform="translate(-33.276 -101)">
               <path id="Path_32659" data-name="Path 32659" d="M34.034,102.519H38.2l-.732-.557c.122.37.243.739.365,1.112q.441,1.333.879,2.666.528,1.6,1.058,3.211.46,1.394.917,2.788c.149.451.291.9.446,1.352l.008.02a.76.76,0,0,0,1.466-.4c-.122-.37-.243-.739-.365-1.112q-.441-1.333-.879-2.666-.528-1.607-1.058-3.213-.46-1.394-.917-2.788c-.149-.451-.289-.9-.446-1.352l-.008-.02a.783.783,0,0,0-.732-.557H34.037a.76.76,0,0,0,0,1.519Z" fill="#fff"/>
               <path id="Path_32660" data-name="Path 32660" d="M288.931,541.934q-.615,1.1-1.233,2.193c-.058.106-.119.21-.177.317a.767.767,0,0,0,.656,1.142h11.6c.534,0,1.071.01,1.608,0h.023a.76.76,0,0,0,0-1.519h-11.6c-.534,0-1.074-.015-1.608,0h-.023l.656,1.142q.615-1.1,1.233-2.193c.058-.106.119-.21.177-.316a.759.759,0,0,0-1.312-.765Z" transform="translate(-247.711 -429.41)" fill="#fff"/>
@@ -22,17 +23,23 @@
               <path id="Path_32663" data-name="Path 32663" d="M267.044,237.988q-.52,1.341-1.038,2.682-.828,2.138-1.654,4.274l-.38.983.489-.372H254.1c-.476,0-.957-.02-1.436,0h-.02l.489.372q-.444-1.348-.886-2.694-.7-2.131-1.4-4.264c-.109-.327-.215-.653-.324-.983l-.489.641h16.791c.228,0,.456.005.681,0h.03a.506.506,0,0,0,0-1.013H250.744c-.228,0-.456-.005-.681,0h-.03a.511.511,0,0,0-.489.641q.444,1.348.886,2.694.7,2.131,1.4,4.264c.109.327.215.653.324.983a.523.523,0,0,0,.489.372h10.359c.476,0,.957.018,1.436,0h.02a.526.526,0,0,0,.489-.372q.52-1.341,1.038-2.682.828-2.138,1.654-4.274l.38-.983a.508.508,0,0,0-.355-.623A.52.52,0,0,0,267.044,237.988Z" transform="translate(-210.769 -133.152)" fill="#fff"/>
             </g>
         </svg>
+        (<span class="cart-count">{{(isset($carts) && count($carts) > 0) ? count($carts) : 0 }}</span> {{translate('Items')}})
     </span>
-    <span class="d-none d-xl-block ml-2 fs-14 fw-700 text-white">{{ single_price($total) }}</span>
-    <span class="nav-box-text d-none d-xl-block ml-2 text-white fs-12">
-
-        (<span class="cart-count">{{count($carts) > 0 ? count($carts) : 0 }}</span> {{translate('Items')}})
-
-    </span>
+    
+    <span class="d-none d-xl-block ml-2 fs-12 fw-500 text-primary bg-white w-100 text-center p-1 mt-1" style="border-radius: 3px">{{ single_price($total) }}</span>
+    
 </a>
 
 <!-- Cart Items -->
-<div class="dropdown-menu dropdown-menu-right dropdown-menu-lg p-0 stop-propagation rounded-0">
+<div class="dropdown-menu dropdown-menu-right has-transition dropdown-menu-lg p-0 stop-propagation rounded-0 position-fixed top-0 right-0" style="height: 100vh; top: 0px; transform: translateX(0%); width: 400px;" data-booted="true">
+    <div tabindex="-1" class="d-flex align-items-center p-4 border-bottom side-cart-top v-list-item theme--light">
+        <i class="la la-shopping-cart la-3x me-2 text-primary"></i>
+        <div class="lh-1-4">
+            <div class="fs-16 fw-500">
+                {{(isset($carts) && count($carts) > 0) ? count($carts) : 0 }} {{translate('Items')}}
+            </div>
+        </div>
+    </div>
     @if (isset($carts) && count($carts) > 0)
         <div class="fs-16 fw-700 text-soft-dark pt-4 pb-2 mx-4 border-bottom" style="border-color: #e5e5e5 !important;">
             {{ translate('Cart Items') }}
@@ -95,9 +102,17 @@
             </div>
         </div>
     @else
-        <div class="text-center p-3">
+        {{-- <div class="text-center p-3">
             <i class="las la-frown la-3x opacity-60 mb-3"></i>
             <h3 class="h6 fw-700">{{ translate('Your Cart is empty') }}</h3>
+        </div> --}}
+        <div class="px-5 py-2 side-cart-content">
+            <div class="d-flex flex-column justify-center h-100 text-center pa-5">
+                <img src="{{asset('assets/img/no-cart-item.jpeg')}}" alt="Your shopping bag is empty. Start shopping." class="img-fluid"> 
+                <div class="fs-20">
+                Tu bolsa de compras está vacía. Empieza a comprar.
+                </div>
+            </div>
         </div>
     @endif
 </div>

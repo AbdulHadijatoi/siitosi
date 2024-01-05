@@ -577,11 +577,10 @@
                         </div>
                     </div>
                     <!-- Cart -->
-                    <div class="d-none d-xl-block align-self-stretch ml-5 mr-0 has-transition bg-black-10"
-                        data-hover="dropdown">
-                        <div class="nav-cart-box dropdown h-100" id="cart_items" style="width: max-content;">
-                            @include('frontend.'.get_setting('homepage_select').'.partials.cart')
-                        </div>
+                    <div class="d-none d-xl-block align-self-stretch mr-0 has-transition bg-black-10" style="width: 170px;">
+                        <a class="fw-700 fs-16 text-white mr-3" href="{{ route('orders.track') }}">
+                            {{ translate('Track Order') }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -709,6 +708,38 @@
             <br>
             <br>
         </div>
+    </div>
+
+    <style>
+        /*search*/
+        .contSearch {
+            position: fixed;
+            right: 0;
+            /*top: calc(50% - 103px);*/
+            top: calc(50% - 30.3px);
+            padding:10px;
+            z-index: 2000;
+            /*height: 50px;*/
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 1200px) {
+          .contSearch {
+            display: none; /* Hide the element */
+          }
+        }
+    
+    </style>
+    
+    <div class="contSearch has-transition bg-primary">
+        <div class="d-none d-xl-block align-self-stretch mr-0 has-transition h-100"
+            data-hover="dropdown">
+            <div class="nav-cart-box dropdown h-100" id="cart_items" style="width: max-content;">
+                @include('frontend.partials.cart')
+            </div>
+        </div>
+        
     </div>
 
     <!-- Modal -->
