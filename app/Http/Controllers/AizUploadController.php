@@ -147,7 +147,7 @@ class AizUploadController extends Controller
                 $file_mime = finfo_file($finfo, base_path('public/') . $path);
 
 
-                if ($type[$extension] == 'image' && get_setting('disable_image_optimization') != 1) {
+                if ($type[$extension] == 'image' && get_setting('disable_image_optimization') != 1 && $extension != 'gif') {
                     try {
                         $img = Image::make($request->file('aiz_file')->getRealPath())->encode();
                         $height = $img->height();
