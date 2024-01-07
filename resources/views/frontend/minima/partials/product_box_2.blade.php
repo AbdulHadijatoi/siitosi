@@ -96,7 +96,7 @@
             @if ($product->auction_product == 0)
                 <!-- Previous price -->
                 @if (home_base_price($product) != home_discounted_base_price($product))
-                    <div class="disc-amount has-transition">
+                    <div >
                         <del class="fw-400 text-secondary mr-1">{{ home_base_price($product) }}</del>
                     </div>
                 @endif

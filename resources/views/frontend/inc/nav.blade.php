@@ -545,10 +545,10 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
                                     <span class="fw-700 fs-16 text-white mr-3">{{ translate('Categories') }}</span>
-                                    <a href="{{ route('categories.all') }}" class="text-reset">
+                                    {{-- <a href="{{ route('categories.all') }}" class="text-reset">
                                         <span
                                             class="d-none d-lg-inline-block text-white hov-opacity-80">({{ translate('See All') }})</span>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <i class="las la-angle-down text-white has-transition" id="category-menu-bar-icon"
                                     style="font-size: 1.2rem !important"></i>
